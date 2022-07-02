@@ -8,6 +8,7 @@ error() {
 	ERROR=1
 }
 
+<<<<<<< HEAD
 python_v3_check() {
 	ver=`/usr/bin/env python --version 2>&1 | grep "Python 3"`
 	if [ "${ver}" != "" ]; then
@@ -24,6 +25,14 @@ python_v3_check() {
 		return 0
 	fi
 }
+=======
+if [ $0 == "./setup.sh" ]; then
+	echo
+	echo "* ERROR * You must run via '. setup.sh'"
+	echo
+	exit 1
+fi
+>>>>>>> parent of bf76f1f (update setup)
 
 get_os() {
 	if [ -e /bin/uname ]; then
@@ -36,6 +45,7 @@ get_os() {
 	export $OS
 }
 
+<<<<<<< HEAD
 gnutools="[ awk b2sum base32 base64 basename cat chcon chgrp chmod chown chroot cksum comm cp \
 csplit date dd df dir dircolors dirname du echo env expand expr factor false fmt fold \
 groups head hostid id install join kill link ln logname ls md5sum mkdir mkfifo mknod mktemp \
@@ -45,6 +55,15 @@ sleep sort split stat stdbuf stty sum sync tac tail tee test timeout touch tr tr
 truncate tsort tty uname unexpand uniq unlink uptime users vdir wc who whoami yes"
 
 tools="perl git wget gzip patch diffstat texi2html file bison flex help2man unzip"
+=======
+DISTRO=${DISTRO:=samygo}
+DL_DIR=${DL_DIR:="$HOME/sources"}
+
+# target platform: ssdtv
+MACHINE=${MACHINE:=ssdtv}
+
+mkdir -p  ${OE_BASE}/build-${DISTRO}/conf
+>>>>>>> parent of bf76f1f (update setup)
 
 prepare_tools() {
 	OE_BASE=`pwd -P`
@@ -53,6 +72,7 @@ prepare_tools() {
 	/bin/rm -f ${OE_BASE}/oe/bin/\]
 	/bin/rm -f ${OE_BASE}/oe/bin/\[
 
+<<<<<<< HEAD
 	get_os
 	case $OS in
 	Darwin)
@@ -302,6 +322,11 @@ setup() {
 	if [ ! -f ${OE_BASE}/build-${DISTRO}/conf/local.conf ] || [ ! -f ${OE_BASE}/build-${DISTRO}/env.source ] || [ "$1" = "-f" ] || [ "$2" = "-f" ]; then
 		PATH_TO_TOOLS="build-${DISTRO}/tmp/sysroots/`uname -m`-`uname -s | awk '{print tolower($0)}'`/usr"
 		echo "DL_DIR = \"${DL_DIR}\"
+=======
+if [ ! -f ${OE_BASE}/build-${DISTRO}/conf/local.conf ] || [ ! -f ${OE_BASE}/build-${DISTRO}/env.source ] || [ "$1" = "--force" ]; then
+	PATH_TO_TOOLS="build-${DISTRO}/tmp/sysroots/`uname -m`-`uname -s | awk '{print tolower($0)}'`/usr"
+	echo "DL_DIR = \"${DL_DIR}\"
+>>>>>>> parent of bf76f1f (update setup)
 OE_BASE = \"${OE_BASE}\"
 BBFILES = \"${BBF}\"
 MACHINE = \"${MACHINE}\"
